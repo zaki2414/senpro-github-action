@@ -39,14 +39,14 @@ jobs:
           password: ${{secrets.PASSWORD }}
           port: ${{ secrets.PORT }}
           script: |
-            eval $(ssh-agent -s)"
+            eval "$(ssh-agent -s)"
             ssh-add ~/.ssh/ssh-praktikan54
-            Iecho "Cek folder project";
-            [ ! -d "$(HOME)/senpro/520148/modul02/senpro-github-action/"] &&
+            echo "Cek folder project";
+            [ ! -d "$(HOME)/senpro/520148/modul02/senpro-github-action/"  ] &&
               {
                 echo "Repository belum di-clone. Cloning...";
                 mkdir -p ~/senpro/520148/modul02;
-                cd w/senpro/520148/modul02;
+                cd ~/senpro/520148/modul02;
                 git clone https://github.com/zaki2414/senpro-github-action.git;
                 cd ~/senpro/520148/modul02/senpro-github-action;
                 echo "Install Package dan Build Project";
@@ -59,5 +59,6 @@ jobs:
                 git restore .;
                 git pull origin main;
                 echo "Install Package dan Build Project";
-                npm install:
+                npm install;
                 npm run build;
+              }
